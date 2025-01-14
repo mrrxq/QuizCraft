@@ -5,19 +5,17 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-require 'config.php';
+echo "<h1>Welkom, " . $_SESSION['role'] . "!</h1>";
 
-$userRole = $_SESSION['role'];
-
-if ($userRole == 'admin') {
-    echo "<h1>Welkom Admin!</h1>";
-    echo "<a href='create_user.php?role=docent'>Docent aanmaken</a>";
-} elseif ($userRole == 'docent') {
-    echo "<h1>Welkom Docent!</h1>";
-    echo "<a href='create_user.php?role=student'>Student aanmaken</a>";
-} else {
-    echo "<h1>Welkom Student!</h1>";
+if ($_SESSION['role'] === 'admin') {
+    echo "<a href='register.php'>Gebruiker Aanmaken</a><br>";
+    echo "<a href='manage_quizzes.php'>Quizzen Beheren</a><br>";
+} elseif ($_SESSION['role'] === 'docent') {
+    echo "<a href='manage_questions.php'>Vragen Beheren</a><br>";
+    echo "<a href='view_results.php'>Resultaten Bekijken</a><br>";
+} elseif ($_SESSION['role'] === 'student') {
+    echo "<a href='take_quiz.php'>Quiz Maken</a><br>";
 }
-?>
 
-<a href="logout.php">Uitloggen</a>
+echo "<a href='logout.php'>Uitloggen</a>";
+?>
