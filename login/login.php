@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
-        header("Location: dashboard.php");
+        header("Location: dashboard/dashboard.php");
         exit;
     } else {
         echo "Ongeldige gebruikersnaam of wachtwoord.";
