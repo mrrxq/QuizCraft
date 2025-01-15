@@ -193,19 +193,19 @@
     </div>
     <div class="quiz-container">
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 1 -->
-            <img src="img\Coding-for-Beginners---How-to-Get-Started-With-Coding.png" alt="Quiz 1"> <!-- Replace with actual image URL -->
+            <img src="Images\Coding-for-Beginners---How-to-Get-Started-With-Coding.png" alt="Quiz 1"> <!-- Replace with actual image URL -->
             <div class="quizText">Coderen</div>
         </button>
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 2 -->
-            <img src="img\and-more.jpg" alt="Quiz 2"> <!-- Replace with actual image URL -->
+            <img src="Images\and-more.jpg" alt="Quiz 2"> <!-- Replace with actual image URL -->
             <div class="quizText">Math</div>
         </button>
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 3 -->
-            <img src="img\kahoot.jpg" alt="Quiz 3"> <!-- Replace with actual image URL -->
+            <img src="Images\kahoot.jpg" alt="Quiz 3"> <!-- Replace with actual image URL -->
             <div class="quizText">Kahoot</div>
         </button>
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 4 -->
-            <img src="img\a362273509f7eccdcf362bb73b3b006d.avif" alt="Quiz 4"> <!-- Replace with actual image URL -->
+            <img src="Images\a362273509f7eccdcf362bb73b3b006d.avif" alt="Quiz 4"> <!-- Replace with actual image URL -->
             <div class="quizText">Music</div>
         </button>
     </div>
