@@ -55,7 +55,7 @@
             outline: none;
             border-radius: 5px;
         }
-        button {
+        .loginbtn {
             width: 60%;
             height: 40px;
             margin: 10px auto;
@@ -72,7 +72,7 @@
             transition: .2s ease-in;
             cursor: pointer;
         }
-        button:hover {
+        .loginbtn:hover {
             background: #66BB6A;
         }
         .login {
@@ -97,33 +97,39 @@
         }
         .QuizCraft {
             background-color: #A35C7A;
-            padding: 5px 10px; 
+            padding: 10px 15px; /* Vergrote padding voor een grotere knop */
             border-radius: 10px; 
-            width: 140px;
+            width: 160px; /* Vergrote breedte */
             border: 4px solid #212121;
             margin-bottom: 20px; 
+            cursor: pointer; /* Cursor verandert naar pointer */
+            display: flex; /* Flexbox voor centreren */
+            justify-content: center; /* Horizontaal centreren */
+            align-items: center; /* Verticaal centreren */
+            font-size: 26px; /* Vergrote font-grootte */
         }
         .QuizCraft h1 {
             font-size: 24px; 
             font-weight: 600; 
             color: white;
             text-align: center; 
+            margin: 0; /* Verwijder standaard marge */
         }
     </style>
 </head>
 <body>
-    <div class="QuizCraft">
+    <button class="QuizCraft" onclick="window.location.href='index.php';">
         <h1>Quiz Craft</h1>
-    </div>
+    </button>
     <div class="main">  	
-        <input type="checkbox" id="chk" aria-hidden="true">
+        <input type="checkbox" id="chk" aria-hidden="true" checked>
         <div class="signup">
             <form>
                 <label for="chk" aria-hidden="true">Sign up</label>
                 <input type="text" name="txt" placeholder="User name" required="">
                 <input type="email" name="email" placeholder="Email" required="">
                 <input type="password" name="pswd" placeholder="Password" required="">
-                <button>Sign up</button>
+                <button class="loginbtn">Sign up</button>
             </form>
         </div>
         <div class="login">
@@ -131,9 +137,13 @@
                 <label for="chk" aria-hidden="true">Login</label>
                 <input type="email" name="email" placeholder="Email" required="">
                 <input type="password" name="pswd" placeholder="Password" required="">
-                <button>Login</button>
+                <button class="loginbtn">Login</button>
             </form>
         </div>
     </div>
+    <script>
+        // Zorg ervoor dat de loginsectie standaard zichtbaar is
+        document.getElementById('chk').checked = true; 
+    </script>
 </body>
 </html>
