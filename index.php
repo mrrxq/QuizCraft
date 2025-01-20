@@ -59,7 +59,7 @@
             display: flex; 
             align-items: center; 
         }
-        button {
+        .login-link {
             color: #212121;
             background-color: #212121;
             margin-left: 45px; 
@@ -67,11 +67,12 @@
             border-radius: 10px; 
             padding: 10px; 
             width: 90px;
-        }
-        button a {
+            text-align: center;
+            display: inline-block;
             color: white; 
             font-weight: bold;
             font-size: 15px;
+            display: block;
         }
         .textBox {
             background-color: #C890A7;
@@ -164,7 +165,7 @@
             font-weight: 400;
             margin: 0px 5px;
         }
-        .quizText{
+        .quizText {
             font-size: 40px;
             font-weight: 600;
             color: white;
@@ -179,7 +180,7 @@
         </ul>
         <div class="logo"><a href="#">Quiz Craft</a></div>
         <div class="button-container">
-            <button><a href="Login.php">Log In</a></button>
+            <button class="login-link" onclick="window.location.href='Login.php';">Log In</button>
         </div>
     </nav>
     <h1>
@@ -192,19 +193,19 @@
     </div>
     <div class="quiz-container">
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 1 -->
-            <img src="img\Coding-for-Beginners---How-to-Get-Started-With-Coding.png" alt="Quiz 1"> <!-- Replace with actual image URL -->
+            <img src="img/Coding-for-Beginners---How-to-Get-Started-With-Coding.png" alt="Quiz 1"> <!-- Replace with actual image URL -->
             <div class="quizText">Coderen</div>
         </button>
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 2 -->
-            <img src="img\and-more.jpg" alt="Quiz 2"> <!-- Replace with actual image URL -->
+            <img src="img/and-more.jpg" alt="Quiz 2"> <!-- Replace with actual image URL -->
             <div class="quizText">Math</div>
         </button>
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 3 -->
-            <img src="img\kahoot.jpg" alt="Quiz 3"> <!-- Replace with actual image URL -->
+            <img src="img/kahoot.jpg" alt="Quiz 3"> <!-- Replace with actual image URL -->
             <div class="quizText">Kahoot</div>
         </button>
         <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 4 -->
-            <img src="img\a362273509f7eccdcf362bb73b3b006d.avif" alt="Quiz 4"> <!-- Replace with actual image URL -->
+            <img src="img/a362273509f7eccdcf362bb73b3b006d.avif" alt="Quiz 4"> <!-- Replace with actual image URL -->
             <div class="quizText">Music</div>
         </button>
     </div>

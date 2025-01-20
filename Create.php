@@ -1,229 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizCraft</title>
-    <style type="text/css">
-        * {
-            text-decoration: none;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>Interface Voorbeeld met Zijpaneel</title>
+    <style>
         body {
-            background-color: #FBF5E5; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f9f3e8;
+            position: relative; /* Om de wrapper goed te positioneren */
+        }
+        .sidebar {
+            width: 50px;
+            background-color: #A35C7A;
+            padding: 10px;
+            transition: width 0.3s;
+            height: 100vh;
+            position: fixed; /* Sidebar blijft vast */
+            top: 0;
+            left: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; 
-            overflow-x: hidden;
-        }
-        .navbar {
-            background: #C890A7; 
-            font-family: 'Inter', sans-serif; 
-            padding: 15px 30px;
-            border: 4px solid #212121;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            width: 100%; 
-            position: relative; 
+            z-index: 1; /* Zorgt ervoor dat de sidebar boven andere elementen komt */
         }
-        .logo {
-            background-color: #A35C7A;
-            padding: 10px 20px; 
-            border-radius: 10px; 
-            margin-right: 170px;
+        .sidebar.expanded {
+            width: 200px;
         }
-        .logo a {
-            font-size: 40px; 
-            font-weight: 600; 
-            color: white;
-        }
-        ul {
-            display: flex; 
-            align-items: center;
-        }
-        li {
-            list-style: none; 
-            display: inline-block;
-        }
-        li a {
-            color: white; 
-            font-size: 20px; 
-            font-weight: bold; 
-            margin-right: 65px;
-            padding-left: 65px;
-        }
-        .button-container {
-            display: flex; 
-            align-items: center; 
-        }
-        button {
-            color: #212121;
-            background-color: #212121;
-            margin-left: 45px; 
-            margin-right: 45px;
-            border-radius: 10px; 
-            padding: 10px; 
-            width: 90px;
-        }
-        button a {
-            color: white; 
-            font-weight: bold;
-            font-size: 15px;
-        }
-        .textBox {
-            background-color: #C890A7;
-            border: 4px solid #212121;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            width: 600px;
-            margin: 40px auto; 
-        }
-        h1 {
-            text-align: center;
-            margin-top: 20px; 
-            font-family: 'Inter', sans-serif;
-            font-size: 60px;
-            font-weight: 700;
-        }
-        .quiz-container {
-            display: flex; 
-            justify-content: center; 
-            margin-top: 20px; 
-        }
-        .quizblok {
-            margin: 10px; 
-            width: 250px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            background-color: #A35C7A; 
-            border: none; 
-            border-radius: 10px; 
-            color: white; 
-            border: 4px solid #212121;
-            padding: 10px; 
-            cursor: pointer; 
-        }
-        .quizblok img {
-            width: 100%; 
-            height: auto; 
-            border-radius: 10px; 
-        }
-        .quizText {
-            margin-top: 10px; 
-            font-size: 18px; 
-            color: #212121; 
-            text-align: center; 
-        }
-        footer {
-            background-color: #111;
-            padding: 20px 0; 
-            margin-top: auto; 
-            width: 100%; 
-        }
-        .footerContainer {
+        .button {
+            background-color: #d1a6b0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            padding: 10px;
             width: 100%;
-            padding: 20px 30px;
-            text-align: center; 
-        }
-        .footerNav {
-            margin: 30px 0;
-        }
-        .footerNav ul {
-            display: flex;
-            justify-content: center;
-            list-style-type: none;
-        }
-        .footerNav ul li a {
-            color:white;
-            margin: 20px;
-            text-decoration: none;
-            font-size: 1.3em;
-            opacity: 0.7;
-            transition: 0.5s;
-        }
-        .footerNav ul li a:hover {
-            opacity: 1;
-        }
-        .footerBottom {
-            padding: 20px;
             text-align: center;
         }
-        .footerBottom p {
-            color: white;
+        .profile-button {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(-10px);
         }
-        .designer {
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 400;
-            margin: 0px 5px;
+        .back-arrow {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            font-size: 24px;
         }
-        .quizText{
-            font-size: 40px;
-            font-weight: 600;
-            color: white;
+        
+        #Create {
+            border: 4px solid #212121;
+            width: 180px;
+            height: 50px;
+            background-color: #D9D9D9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            position: absolute;
+            top: 20%;
+            left: 25%; /* Centraal op de pagina */
+            transform: translate(-50%, -50%);
+            z-index: 0; /* Zorgt ervoor dat deze onder de sidebar staat */
+        }
+        .wrapper {
+            border-radius: 20px;
+            align-items: center;
+            max-height: 200px; /* Hoogte van de wrapper */
+            border: 1px solid #ddd;
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin-left: 290px; /* Deze regel past de positie aan */
+            margin-top: 230px; /* Zorg ervoor dat de wrapper naar beneden verschuift */
+            height: auto; /* Zorg ervoor dat de hoogte automatisch is */
+            background-color: #C890A7;
+        }
+        .wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        .wrapper::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .wrapper .item {
+            border: 4px solid #212121;
+            border-radius: 20px;
+            min-width: 160px;
+            height: 160px;
+            line-height: 160px;
+            text-align: center;
+            background-color: #ddd;
+            margin-right: 2px;
+            cursor: pointer; /* Zorgt ervoor dat de knoppen eruitzien als knoppen */
+        }
+        #Saved {
+            border: 4px solid #212121;
+            width: 180px;
+            height: 50px;
+            background-color: #D9D9D9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            position: absolute;
+            top: 68%;
+            left: 25%; /* Centraal op de pagina */
+            transform: translate(-50%, -50%);
+            z-index: 0; /* Zorgt ervoor dat deze onder de sidebar staat */
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="Join.php">Join</a></li>
-            <li><a href="Create.php">Create</a></li>
-        </ul>
-        <div class="logo"><a href="#">Quiz Craft</a></div>
-        <div class="button-container">
-            <button><a href="Login.php">Log In</a></button>
-        </div>
-    </nav>
-    <h1>
-        Welcome to<br>QuizCraft!
-    </h1>
-    <div class="textBox">
-        Unlock your knowledge and challenge yourself with our fun and engaging quizzes!<br> 
-        Whether you're a trivia master or just looking to learn something new, <br>
-        we have a wide range of topics to explore.
-    </div>
-    <div class="quiz-container">
-        <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 1 -->
-            <img src="img\Coding-for-Beginners---How-to-Get-Started-With-Coding.png" alt="Quiz 1"> <!-- Replace with actual image URL -->
-            <div class="quizText">Coderen</div>
-        </button>
-        <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 2 -->
-            <img src="img\and-more.jpg" alt="Quiz 2"> <!-- Replace with actual image URL -->
-            <div class="quizText">Math</div>
-        </button>
-        <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 3 -->
-            <img src="img\kahoot.jpg" alt="Quiz 3"> <!-- Replace with actual image URL -->
-            <div class="quizText">Kahoot</div>
-        </button>
-        <button class="quizblok" onclick="location.href='#';"> <!-- Link to Quiz 4 -->
-            <img src="img\a362273509f7eccdcf362bb73b3b006d.avif" alt="Quiz 4"> <!-- Replace with actual image URL -->
-            <div class="quizText">Music</div>
-        </button>
+    <div class="sidebar" id="sidebar">
+        <button class="button" id="toggle-btn" onclick="toggleSidebar()">▶</button>
+        <button class="button profile-button" id="profile-btn" onclick="window.location.href='profiel.php';">P</button>
+        <span class="back-arrow" id="back-arrow" onclick="window.location.href='index.php';">←</span>
     </div>
 
-    <footer>
-        <div class="footerContainer">
-            <div class="footerNav">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">News</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="">Our Team</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footerBottom">
-            <p>Copyright &copy;2025; Designed by <span class="designer">QuizCraft</span></p>
-        </div>
-    </footer>
+    <div id="Create">
+        <h1>Create</h1>
+    </div>
+    <div class="content"></div>
+
+    <div class="wrapper">
+        <button class="item" onclick="alert('Kill yourself Nigger')">box-1</button>
+        <button class="item" onclick="location.href='Questions.php'">box-2</button>
+        <button class="item" onclick="alert('Box 3 clicked!')">box-3</button>
+        <button class="item" onclick="alert('Box 4 clicked!')">box-4</button>
+        <button class="item" onclick="alert('Box 5 clicked!')">box-5</button>
+        <button class="item" onclick="alert('Box 6 clicked!')">box-6</button>
+        <button class="item" onclick="alert('Box 7 clicked!')">box-7</button>
+        <button class="item" onclick="alert('Box 8 clicked!')">box-8</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-9</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-10</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-11</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-12</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-13</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-14</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-15</button>
+        <button class="item" onclick="alert('Box 9 clicked!')">box-16</button>
+    </div>
+
+    <div id="Saved">
+        <h1>Saved</h1>
+    </div>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const profileBtn = document.getElementById('profile-btn');
+            const backArrow = document.getElementById('back-arrow');
+
+            sidebar.classList.toggle('expanded');
+
+            if (sidebar.classList.contains('expanded')) {
+                toggleBtn.innerHTML = '◀';
+                profileBtn.style.display = 'block';
+                backArrow.style.display = 'block';
+                setTimeout(() => {
+                    profileBtn.style.opacity = '1';
+                    backArrow.style.opacity = '1';
+                }, 10);
+            } else {
+                toggleBtn.innerHTML = '▶';
+                profileBtn.style.opacity = '0';
+                backArrow.style.opacity = '0';
+                profileBtn.style.transform = 'translateY(-10px)';
+                backArrow.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    profileBtn.style.display = 'none';
+                    backArrow.style.display = 'none';
+                }, 300);
+            }
+        }
+    </script>
 </body>
 </html>
